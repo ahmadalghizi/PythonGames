@@ -8,7 +8,6 @@ class player:
 
     def coinToss(self, p1num, p2num):
         randomN = random.randint(1, 2)
-        print(randomN)
         return randomN
 
 
@@ -41,36 +40,21 @@ class board:
                 self.boardPieces.insert(temp, letter)
                 break
             else:
-                print('incorrect entry please try again')
+                print('GameBot: incorrect entry please try again')
 
     def getCpuTurn(self, letter):
+        #first we will try to look to place piece in center
         if self.boardPieces[5] != 'x' and self.boardPieces[5] != 'o':
             self.boardPieces.pop(5)
             self.boardPieces.insert(5, letter)
-        elif self.boardPieces[2] == '2':
-            self.boardPieces.pop(2)
-            self.boardPieces.insert(2, letter)
-        elif self.boardPieces[4] == '4':
-            self.boardPieces.pop(4)
-            self.boardPieces.insert(4, letter)
-        elif self.boardPieces[6] == '6':
-            self.boardPieces.pop(6)
-            self.boardPieces.insert(6, letter)
-        elif self.boardPieces[8] == '8':
-            self.boardPieces.pop(8)
-            self.boardPieces.insert(8, letter)
-        elif self.boardPieces[1] == '1':
-            self.boardPieces.pop(1)
-            self.boardPieces.insert(1, letter)
-        elif self.boardPieces[3] == '3':
-            self.boardPieces.pop(3)
-            self.boardPieces.insert(3, letter)
-        elif self.boardPieces[7] == '7':
-            self.boardPieces.pop(7)
-            self.boardPieces.insert(7, letter)
-        elif self.boardPieces[9] == '9':
-            self.boardPieces.pop(9)
-            self.boardPieces.insert(9, letter)
+        # random move anywhere on the board
+        else:
+            for i in range(1, 10):
+                if self.boardPieces[i] != 'x' and self.boardPieces[i] != 'o':
+                    self.boardPieces.pop(i)
+                    self.boardPieces.insert(i, letter)
+                    i += 1
+                    break
 
     def checkIfTie(self):
         if "1" not in self.boardPieces and "2" not in self.boardPieces and "3" not in self.boardPieces and "4" not in self.boardPieces and "5" not in self.boardPieces and "6" not in self.boardPieces and "7" not in self.boardPieces and "8" not in self.boardPieces and "9" not in self.boardPieces:
@@ -87,6 +71,7 @@ class board:
             return False
 
     def checkWinVertical(self):
+
         if self.boardPieces[1] == self.boardPieces[2] == self.boardPieces[3] or self.boardPieces[4] == self.boardPieces[
             5] == self.boardPieces[6] or self.boardPieces[7] == self.boardPieces[8] == self.boardPieces[9]:
             return True
@@ -144,19 +129,19 @@ class game:
                     else:
                         dValue = b.checkWinDiagonal()
                         if dValue:
-                            print('player 1 wins!')
+                            print('GameBot: player 1 wins!')
                             b.display()
                             break
                         else:
                             vValue = b.checkWinVertical()
                             if vValue:
-                                print('Player 1 wins!')
+                                print('GameBot: Player 1 wins!')
                                 b.display()
                                 break
                             else:
                                 hValue = b.checkWinHorizontal()
                                 if hValue:
-                                    print('player 1 wins!')
+                                    print('GameBot: player 1 wins!')
                                     b.display()
                                     break
                                 else:
@@ -172,20 +157,20 @@ class game:
                                         dValue = b.checkWinDiagonal()
                                         if dValue:
                                             b.display()
-                                            print('player 2 wins!')
+                                            print('GameBot: player 2 wins!')
                                             break
                                         else:
                                             vValue = b.checkWinVertical()
                                             if vValue:
                                                 b.display()
-                                                print('Player 2 wins!')
+                                                print('GameBot: Player 2 wins!')
 
                                                 break
                                             else:
                                                 hValue = b.checkWinHorizontal()
                                                 if hValue:
                                                     b.display()
-                                                    print('player 2 wins!')
+                                                    print('GameBot: player 2 wins!')
 
                                                     break
             elif randomN == 2:
@@ -201,23 +186,23 @@ class game:
                     else:
                         dValue = b.checkWinDiagonal()
                         if dValue:
-                            print('player 2 wins!')
+                            print('GameBot: player 2 wins!')
                             b.display()
                             break
                         else:
                             vValue = b.checkWinVertical()
                             if vValue:
-                                print('Player 2 wins!')
+                                print('GameBot: Player 2 wins!')
                                 b.display()
                                 break
                             else:
                                 hValue = b.checkWinHorizontal()
                                 if hValue:
-                                    print('player 2 wins!')
+                                    print('GameBot: player 2 wins!')
                                     b.display()
                                     break
                                 else:
-                                    print('GameObject: player 1 turn')
+                                    print('GameBot: player 1 turn')
                                     b.display()
                                     b.getTurn(p1Letter)
                                     tValue = b.checkIfTie()
@@ -229,20 +214,20 @@ class game:
                                         dValue = b.checkWinDiagonal()
                                         if dValue:
                                             b.display()
-                                            print('player 1 wins!')
+                                            print('GameBot: player 1 wins!')
                                             break
                                         else:
                                             vValue = b.checkWinVertical()
                                             if vValue:
                                                 b.display()
-                                                print('Player 1 wins!')
+                                                print('GameBot: player 1 wins!')
 
                                                 break
                                             else:
                                                 hValue = b.checkWinHorizontal()
                                                 if hValue:
                                                     b.display()
-                                                    print('player 1 wins!')
+                                                    print('GameBot: player 1 wins!')
 
                                                     break
 
@@ -272,23 +257,23 @@ class game:
                     else:
                         dValue = b.checkWinDiagonal()
                         if dValue:
-                            print('player 1 wins!')
+                            print('GameBot: player 1 wins!')
                             b.display()
                             break
                         else:
                             vValue = b.checkWinVertical()
                             if vValue:
-                                print('Player 1 wins!')
+                                print('GameBot: Player 1 wins!')
                                 b.display()
                                 break
                             else:
                                 hValue = b.checkWinHorizontal()
                                 if hValue:
-                                    print('player 1 wins!')
+                                    print('GameBot: player 1 wins!')
                                     b.display()
                                     break
                                 else:
-                                    print('GameObject: cpuTurn')
+                                    print('GameBot: cpuTurn')
                                     b.getCpuTurn(p2Letter)
                                     tValue = b.checkIfTie()
                                     if tValue:
@@ -299,28 +284,27 @@ class game:
                                         dValue = b.checkWinDiagonal()
                                         if dValue:
                                             b.display()
-                                            print('cpu wins!')
+                                            print('GameBot: cpu wins!')
                                             break
                                         else:
                                             vValue = b.checkWinVertical()
                                             if vValue:
                                                 b.display()
-                                                print('cpu wins!')
+                                                print('GameBot: cpu wins!')
 
                                                 break
                                             else:
                                                 hValue = b.checkWinHorizontal()
                                                 if hValue:
                                                     b.display()
-                                                    print('cpu wins!')
+                                                    print('GameBot: cpu wins!')
 
                                                     break
-            elif randomM == '2':
-                print('cpu will go first')
+            elif randomM == 2:
+                print('GameBot: cpu will go first')
                 while True:
-                    b.display()
-                    print('cpu turn')
-                    b.display()
+                    print('GameBot: cpu just took a turn')
+
                     b.getCpuTurn(p2Letter)
                     tValue = b.checkIfTie()
                     if tValue:
